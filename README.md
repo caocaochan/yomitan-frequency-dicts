@@ -6,7 +6,7 @@ Each one shows a word's rank in Yomitan (1 = most common).
 
 | Dictionary | Shows in Yomitan as | Source | Words | Download |
 | --- | --- | --- | --- | --- |
-| Bilibili | **Bilibili** | 4.9M Bilibili comments | 110,069 | [Bilibili.zip](https://github.com/caocaochan/yomitan-frequency-dicts/releases/latest/download/Bilibili.zip) |
+| Bilibili | **Bilibili** | 2.29B Bilibili comments (25% sample) | 1,958,154 | [Bilibili.zip](https://github.com/caocaochan/yomitan-frequency-dicts/releases/latest/download/Bilibili.zip) |
 | Danmei | **Danmei** | 2,047 danmei novels | 264,348 | [Danmei.zip](https://github.com/caocaochan/yomitan-frequency-dicts/releases/latest/download/Danmei.zip) |
 
 ## Install
@@ -22,16 +22,20 @@ Chinese dictionary (CC-CEDICT and others).
 
 Casual, spoken-style internet Chinese: slang such as 好家伙, 破防, 离谱 and 三连 ranks high.
 
-- **Source:** 4,923,469 comments from Bilibili videos.
+- **Source:** 2,289,260,938 comments from Bilibili videos (duplicate comment IDs removed).
 - **Cleaning:** removed reply prefixes (`回复 @name :`), @mentions, emote codes such as `[doge]`,
   links and video IDs. Comments were split into sentences, and identical sentences were segmented once
   and counted by how often they appear.
-- **Segmentation:** HanLP `FINE_ELECTRA_SMALL_ZH` (fine-grained), giving 61.9M Chinese word tokens.
+- **Sample:** this is a partial build from a random 25% of the sentences (256 of 1024 hash shards).
+  A full build will replace it.
+- **Segmentation:** HanLP `COARSE_ELECTRA_SMALL_ZH` and `FINE_ELECTRA_SMALL_ZH` together. A coarse word
+  is kept whole if it is a headword in one of 9 Chinese dictionaries (CC-CEDICT, 汉语大词典, Moegirlpedia
+  and others); otherwise it is counted as the fine words inside it. This gives 7.38B Chinese word tokens.
 - **Kept:** words made only of Chinese characters and seen at least 5 times. Runs of one repeated
   character four or more long (啊啊啊啊) are dropped; 哈哈哈 is kept.
 
-Fine-grained segmentation splits some common compounds into parts (一个 → 一 + 个, 十周年 → 十 + 周年),
-so a few multi-character words that dictionaries list don't get a rank.
+Compounds that no dictionary lists are split into fine-grained parts (都是 → 都 + 是, 十周年 → 十 + 周年),
+so they don't get a rank of their own.
 
 ## Danmei
 
