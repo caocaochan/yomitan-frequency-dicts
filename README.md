@@ -7,7 +7,7 @@ Each one shows a word's rank in Yomitan (1 = most common).
 | Dictionary | Shows in Yomitan as | Source | Words | Download |
 | --- | --- | --- | --- | --- |
 | Bilibili | **Bilibili** | 2.29B Bilibili comments (25% sample) | 1,958,154 | [Bilibili.zip](https://github.com/caocaochan/yomitan-frequency-dicts/releases/latest/download/Bilibili.zip) |
-| Bilibili Small | **Bilibili Small** | Bilibili, dictionary words only (simplified + traditional) | 270,767 | [BilibiliSmall.zip](https://github.com/caocaochan/yomitan-frequency-dicts/releases/latest/download/BilibiliSmall.zip) |
+| Bilibili Small | **Bilibili Small** | Bilibili, dictionary words only (simplified + traditional) | 443,647 | [BilibiliSmall.zip](https://github.com/caocaochan/yomitan-frequency-dicts/releases/latest/download/BilibiliSmall.zip) |
 | Danmei | **Danmei** | 2,047 danmei novels | 264,348 | [Danmei.zip](https://github.com/caocaochan/yomitan-frequency-dicts/releases/latest/download/Danmei.zip) |
 
 ## Install
@@ -44,8 +44,8 @@ so they don't get a rank of their own.
 The Bilibili list trimmed to words you can actually look up, with traditional forms added.
 
 - **Kept:** a Bilibili word is kept only if it, or one of its traditional forms, is a headword in one of
-  12 dictionaries: CC-CEDICT, Bilibili Slang, 现代汉语规范词典, 现代汉语词典, 现代汉语大词典, 汉语大词典,
-  汉语成语源流大辞典, 新华成语大词典, 萌娘百科, 两岸词典, 重编国语辞典修订本 and 国语辞典简编本.
+  13 dictionaries: CC-CEDICT, Bilibili Slang, 现代汉语规范词典, 现代汉语词典, 现代汉语大词典, 汉语大词典,
+  汉语成语源流大辞典, 新华成语大词典, 萌娘百科, 百度百科, 两岸词典, 重编国语辞典修订本 and 国语辞典简编本.
 - **Ranks:** renumbered 1, 2, 3… over the kept words, so there are no gaps where words were removed.
 - **Traditional:** each word also gets its standard, Taiwan and Hong Kong traditional forms (converted
   with [OpenCC](https://github.com/BYVoid/OpenCC)), all with the same rank: 头发, 頭髮; 里面, 裡面, 裏面.
