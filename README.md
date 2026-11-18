@@ -1,7 +1,8 @@
 # Yomitan frequency dictionaries
 
 Chinese word frequency dictionaries for [Yomitan](https://github.com/yomidevs/yomitan),
-built from real-world text and segmented into words with [HanLP](https://github.com/hankcs/HanLP).
+built from real-world text and segmented into words with [HanLP](https://github.com/hankcs/HanLP)
+(Danmei opt: [LTP](https://github.com/HIT-SCIR/ltp)).
 Each one shows a word's rank in Yomitan (1 = most common).
 
 | Dictionary | Shows in Yomitan as | Source | Words | Download |
@@ -9,6 +10,7 @@ Each one shows a word's rank in Yomitan (1 = most common).
 | Bilibili | **Bilibili** | 2.29B Bilibili comments (25% sample) | 1,958,154 | [Bilibili.zip](https://github.com/caocaochan/yomitan-frequency-dicts/releases/latest/download/Bilibili.zip) |
 | Bilibili Small | **Bilibili Small** | Bilibili, dictionary words only (simplified + traditional) | 443,647 | [BilibiliSmall.zip](https://github.com/caocaochan/yomitan-frequency-dicts/releases/latest/download/BilibiliSmall.zip) |
 | Danmei | **Danmei** | 2,047 danmei novels | 264,348 | [Danmei.zip](https://github.com/caocaochan/yomitan-frequency-dicts/releases/latest/download/Danmei.zip) |
+| Danmei opt | **Danmei opt** | 2,047 danmei novels, dictionary words only | 192,463 | [DanmeiOpt.zip](https://github.com/caocaochan/yomitan-frequency-dicts/releases/latest/download/DanmeiOpt.zip) |
 
 ## Install
 
@@ -17,7 +19,7 @@ Each one shows a word's rank in Yomitan (1 = most common).
 3. Make sure Yomitan's language is set to Chinese.
 
 All dictionaries are rank-based and have no readings, so they work alongside any Chinese dictionary
-(CC-CEDICT and others). Bilibili and Danmei are simplified Chinese; Bilibili Small covers both
+(CC-CEDICT and others). Bilibili, Danmei and Danmei opt are simplified Chinese; Bilibili Small covers both
 simplified and traditional.
 
 ## Bilibili
@@ -60,5 +62,25 @@ Written narrative Chinese from danmei (BL) web novels.
 - **Segmentation:** HanLP coarse-grained tokenizer, which keeps compounds and idioms together.
 - **Kept:** words seen at least 5 times in at least 3 different novels. The 3-novel rule removes most
   character names.
+
+## Danmei opt
+
+The same novels as Danmei, segmented differently and limited to words you can look up.
+
+- **Source:** the same 2,047 novels from zhenhunxiaoshuo.com, giving 590.9M counted word tokens.
+- **Segmentation:** [LTP](https://github.com/HIT-SCIR/ltp) legacy word segmenter and POS tagger. Neighbouring
+  words are then merged when the result is a headword in a standard dictionary (CC-CEDICT, 现代汉语词典,
+  现代汉语规范词典, 现代汉语大词典, 汉语大词典, 两岸词典, 重编国语辞典修订本, 国语辞典简编本, 汉语成语源流大辞典,
+  新华成语大词典), picking merges by word probability. So 不是, 一眼, 看着 and 没想到 get their own ranks, matching
+  what Yomitan looks up. Words that LTP tags as names are never merged or split.
+- **Kept:** headwords of 16 Chinese dictionaries (the ten above plus 百度百科, Bilibili Slang, 原神, 萌娘百科,
+  乐词网 and Wikipedia) that appear in at least 3 different novels.
+- **Accuracy:** on 250 hand-segmented sentences from the novels it scored 94.6 F1 on counted words, against
+  93.4 for LTP alone and 90.8 for a dictionary-only segmenter, which splits character names into single
+  characters.
+- **Limits:** a character name that is also a dictionary headword can still rank high if a few novels use
+  it heavily (白玉堂 appears in only 17 novels).
+- **Updates:** Yomitan can check for new versions of this dictionary (Settings → Dictionaries → Check for
+  updates).
 
 The dictionaries contain only words and their ranks, no source text.
