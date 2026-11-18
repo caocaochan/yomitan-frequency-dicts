@@ -2,7 +2,7 @@
 
 Chinese word frequency dictionaries for [Yomitan](https://github.com/yomidevs/yomitan),
 built from real-world text and segmented into words with [HanLP](https://github.com/hankcs/HanLP)
-(Danmei opt: [LTP](https://github.com/HIT-SCIR/ltp)).
+(Danmei opt and Webnovel: [LTP](https://github.com/HIT-SCIR/ltp)).
 Each one shows a word's rank in Yomitan (1 = most common).
 
 | Dictionary | Shows in Yomitan as | Source | Words | Download |
@@ -11,6 +11,7 @@ Each one shows a word's rank in Yomitan (1 = most common).
 | Bilibili Small | **Bilibili Small** | Bilibili, dictionary words only (simplified + traditional) | 443,647 | [BilibiliSmall.zip](https://github.com/caocaochan/yomitan-frequency-dicts/releases/latest/download/BilibiliSmall.zip) |
 | Danmei | **Danmei** | 2,047 danmei novels | 264,348 | [Danmei.zip](https://github.com/caocaochan/yomitan-frequency-dicts/releases/latest/download/Danmei.zip) |
 | Danmei opt | **Danmei opt** | 2,047 danmei novels, dictionary words only | 192,463 | [DanmeiOpt.zip](https://github.com/caocaochan/yomitan-frequency-dicts/releases/latest/download/DanmeiOpt.zip) |
+| Webnovel | **Webnovel** | 8,675 web novels, dictionary words only | 436,665 | [Webnovel.zip](https://github.com/caocaochan/yomitan-frequency-dicts/releases/latest/download/Webnovel.zip) |
 
 ## Install
 
@@ -19,7 +20,7 @@ Each one shows a word's rank in Yomitan (1 = most common).
 3. Make sure Yomitan's language is set to Chinese.
 
 All dictionaries are rank-based and have no readings, so they work alongside any Chinese dictionary
-(CC-CEDICT and others). Bilibili, Danmei and Danmei opt are simplified Chinese; Bilibili Small covers both
+(CC-CEDICT and others). Bilibili, Danmei, Danmei opt and Webnovel are simplified Chinese; Bilibili Small covers both
 simplified and traditional.
 
 ## Bilibili
@@ -80,6 +81,21 @@ The same novels as Danmei, segmented differently and limited to words you can lo
   characters.
 - **Limits:** a character name that is also a dictionary headword can still rank high if a few novels use
   it heavily (白玉堂 appears in only 17 novels).
+- **Updates:** Yomitan can check for new versions of this dictionary (Settings → Dictionaries → Check for
+  updates).
+
+## Webnovel
+
+General Chinese web fiction, mostly male-oriented genres (xianxia, xuanhuan, urban, games): cultivation
+words such as 修炼, 境界, 法宝 and 元婴 rank high.
+
+- **Source:** 8,675 novels from the [wdndev/webnovel-chinese](https://huggingface.co/datasets/wdndev/webnovel-chinese)
+  dataset (11.15B Chinese characters), including 斗破苍穹, 凡人修仙传, 遮天, 庆余年 and 全职高手. Novels split
+  across the dataset's files are counted as one novel. This gives 6.42B counted word tokens.
+- **Segmentation and kept words:** the same method as Danmei opt (LTP, merged to dictionary-word size;
+  headwords of 16 Chinese dictionaries that appear in at least 3 novels).
+- **Limits:** names of famous protagonists that are dictionary headwords can rank because of fan fiction and
+  spin-offs (萧炎 appears in 111 novels).
 - **Updates:** Yomitan can check for new versions of this dictionary (Settings → Dictionaries → Check for
   updates).
 
